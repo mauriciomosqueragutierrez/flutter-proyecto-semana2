@@ -25,8 +25,70 @@ class ResultadosPage extends StatelessWidget {
             ],
           ),
         ),
-
-
+        Expanded(
+            child: Container(
+          margin: EdgeInsets.all(15),
+          decoration: BoxDecoration(
+            color: const Color(0xFF1c1d32),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          height: 160,
+          child: Column(children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 30),
+              child: Column(children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          resultado['textoIMC'].toUpperCase(),
+                          style: TextStyle(
+                              color: resultado['color'],
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 50),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          resultado['resultadoIMC']
+                              .toStringAsFixed(1)
+                              .toString(),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 70,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Text(
+                              resultado['mensajeIMC'],
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        )
+                      ]),
+                ),
+              ]),
+            ),
+          ]),
+        )),
         GestureDetector(
           onTap: () {
             Navigator.push(
