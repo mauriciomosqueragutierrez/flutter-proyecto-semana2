@@ -61,6 +61,34 @@ class _MyHomePageState extends State<MyHomePage> {
     },
   };
 
+
+
+  void _incrementPeso() {
+    setState(() {
+      contadorPeso++;
+    });
+  }
+
+  void _incrementEdad() {
+    setState(() {
+      contadorEdad++;
+    });
+  }
+
+  
+  void _decrementPeso() {
+    setState(() {
+      contadorPeso--;
+    });
+  }
+
+  void _decrementEdad() {
+    setState(() {
+      contadorEdad--;
+    });
+  }
+
+
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -209,7 +237,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
-                              "90",
+                              contadorPeso.toString(),
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 50),
                             )
@@ -218,12 +246,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             FloatingActionButton(
-                              onPressed: _incrementCounter,
-                              child: Icon(Icons.add,
+                              onPressed: _decrementPeso,
+                              child: Icon(Icons.remove,
                                   color: Colors.white, size: 32),
                             ),
                             FloatingActionButton(
-                              onPressed: _incrementCounter,
+                              onPressed: _incrementPeso,
                               child: Icon(Icons.add,
                                   color: Colors.white, size: 32),
                             )
@@ -252,7 +280,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
-                              "34",
+                              contadorEdad.toString(),
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 50),
                             )
@@ -261,12 +289,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             FloatingActionButton(
-                              onPressed: _incrementCounter,
-                              child: Icon(Icons.add,
+                              onPressed: _decrementEdad,
+                              child: Icon(Icons.remove,
                                   color: Colors.white, size: 32),
                             ),
                             FloatingActionButton(
-                              onPressed: _incrementCounter,
+                              onPressed: _incrementEdad,
                               child: Icon(Icons.add,
                                   color: Colors.white, size: 32),
                             )
