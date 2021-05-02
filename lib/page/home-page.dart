@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 160,
                 width: 160,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF212122),
+                  color: const Color(0xFFFF4081),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(
@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 160,
                 width: 160,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF212122),
+                  color: const Color(0xFF448AFF),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(
@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 50),
                               ),
-                              Text("centímetros",
+                              Text(" centímetros",
                                   style: TextStyle(
                                       color: Colors.white30, fontSize: 20))
                             ]),
@@ -116,10 +116,10 @@ class _MyHomePageState extends State<MyHomePage> {
                               SliderTheme(
                                 data: SliderThemeData(
                                     activeTrackColor: Colors.white,
-                                    thumbColor: Colors.pink,
-                                    overlayColor: Colors.pink.withOpacity(0.2),
+                                    thumbColor: Colors.purpleAccent,
+                                    overlayColor: Colors.purpleAccent.withOpacity(0.2),
                                     inactiveTrackColor: Colors.white24,
-                                    valueIndicatorColor: Colors.pink),
+                                    valueIndicatorColor: Colors.purpleAccent),
                                 child: Slider(
                                   value: _currentSliderValue,
                                   min: 100,
@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   divisions: 100,
                                   label:
                                       _currentSliderValue.round().toString() +
-                                          " cm",
+                                          " centímetros",
                                   onChanged: (double value) {
                                     setState(() {
                                       _currentSliderValue = value;
