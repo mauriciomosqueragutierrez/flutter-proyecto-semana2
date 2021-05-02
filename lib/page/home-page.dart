@@ -10,7 +10,56 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int contadorEdad = 10;
+  int contadorPeso = 50;
+  String sexo = "";
+  int codeColorFemenino = 0xFF101227;
+  int codeColorMasculino = 0xFF101227;
   int _counter = 0;
+  var categorias = {
+    {
+      "textoIMC": "Bajo Peso",
+      "valorMinimoRango": 0,
+      "valorMaximoRango": 18.4,
+      "mensajeIMC": "Verificar con nutricionista para aumentar peso.",
+      "color": Colors.red,
+    },
+    {
+      "textoIMC": "Normal Peso",
+      "valorMinimoRango": 18.5,
+      "valorMaximoRango": 24.9,
+      "mensajeIMC": "Verificar con nutricionista para aumentar peso.",
+      "color": Colors.red,
+    },
+    {
+      "textoIMC": "Sobre Peso",
+      "valorMinimoRango": 25.0,
+      "valorMaximoRango": 29.9,
+      "mensajeIMC": "Verificar con nutricionista para aumentar peso.",
+      "color": Colors.red,
+    },
+    {
+      "textoIMC": "Obesidad Grado 1",
+      "valorMinimoRango": 30.0,
+      "valorMaximoRango": 34.5,
+      "mensajeIMC": "Verificar con nutricionista para aumentar peso.",
+      "color": Colors.red,
+    },
+    {
+      "textoIMC": "Obesidad Grado 2",
+      "valorMinimoRango": 35.0,
+      "valorMaximoRango": 39.9,
+      "mensajeIMC": "Verificar con nutricionista para aumentar peso.",
+      "color": Colors.red,
+    },
+    {
+      "textoIMC": "Obesidad Grado 3",
+      "valorMinimoRango": 40.0,
+      "valorMaximoRango": 100.1,
+      "mensajeIMC": "Verificar con nutricionista para aumentar peso.",
+      "color": Colors.red,
+    },
+  };
 
   void _incrementCounter() {
     setState(() {
@@ -77,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ])),
           ],
         ),
-                Padding(
+        Padding(
           padding: const EdgeInsets.all(18.0),
           child: Expanded(
               child: Container(
@@ -110,34 +159,30 @@ class _MyHomePageState extends State<MyHomePage> {
                                   style: TextStyle(
                                       color: Colors.white30, fontSize: 20))
                             ]),
-                               SliderTheme(
-                                data: SliderThemeData(
-                                    activeTrackColor: Colors.white,
-                                    thumbColor: Colors.purpleAccent,
-                                    overlayColor: Colors.purpleAccent.withOpacity(0.2),
-                                    inactiveTrackColor: Colors.white24,
-                                    valueIndicatorColor: Colors.purpleAccent),
-                                child: Slider(
-                                  value: _currentSliderValue,
-                                  min: 50,
-                                  max: 200,
-                                  divisions: 150,
-                                  label:
-                                      _currentSliderValue.round().toString() +
-                                          "   centímetros",
-                                  onChanged: (double value) {
-                                    setState(() {
-                                      _currentSliderValue = value;
-                                    });
-                                  },
-                                ),
-                              ),
-                      
-                       ]))),
+                        SliderTheme(
+                          data: SliderThemeData(
+                              activeTrackColor: Colors.white,
+                              thumbColor: Colors.purpleAccent,
+                              overlayColor:
+                                  Colors.purpleAccent.withOpacity(0.2),
+                              inactiveTrackColor: Colors.white24,
+                              valueIndicatorColor: Colors.purpleAccent),
+                          child: Slider(
+                            value: _currentSliderValue,
+                            min: 50,
+                            max: 200,
+                            divisions: 150,
+                            label: _currentSliderValue.round().toString() +
+                                "   centímetros",
+                            onChanged: (double value) {
+                              setState(() {
+                                _currentSliderValue = value;
+                              });
+                            },
+                          ),
+                        ),
+                      ]))),
         ),
-        
-
-
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
