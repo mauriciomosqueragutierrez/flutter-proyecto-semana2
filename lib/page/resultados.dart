@@ -10,14 +10,14 @@ class ResultadosPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Resultado De Operaciones"),
+        title: Text("Resultado del Cálculo"),
       ),
       body: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         Container(
           margin: EdgeInsets.all(15),
           child: Row(
             children: [
-              Text("Resultado",
+              Text("Resultado del Cálculo de tu IMC",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 40,
@@ -46,7 +46,7 @@ class ResultadosPage extends StatelessWidget {
                           resultado['textoIMC'].toUpperCase(),
                           style: TextStyle(
                               color: resultado['color'],
-                              fontSize: 20,
+                              fontSize: 40,
                               fontWeight: FontWeight.bold),
                         )
                       ]),
@@ -62,7 +62,7 @@ class ResultadosPage extends StatelessWidget {
                               .toString(),
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 70,
+                              fontSize: 90,
                               fontWeight: FontWeight.bold),
                         )
                       ]),
@@ -78,7 +78,7 @@ class ResultadosPage extends StatelessWidget {
                             child: Text(
                               resultado['mensajeIMC'],
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
+                                  TextStyle(color: Colors.white, fontSize: 40),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -108,9 +108,9 @@ class ResultadosPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
-                          "Calcular",
+                          "Volver a calcular",textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 22),
+                              fontWeight: FontWeight.bold, fontSize: 40),
                         ),
                       ),
                     ])
