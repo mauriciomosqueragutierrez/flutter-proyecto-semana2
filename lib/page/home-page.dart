@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'resultados.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -13,44 +14,44 @@ class _MyHomePageState extends State<MyHomePage> {
   int contadorEdad = 10;
   int contadorPeso = 50;
   String sexo = "";
-  int codeColorFemenino = 0xFF101227;
-  int codeColorMasculino = 0xFF101227;
+  int codeColorFemenino = 0xFFFF4081;
+  int codeColorMasculino = 0xFF2196F3;
   int _counter = 0;
-  var categorias = {
+  List<Map<String, dynamic>> categorias = [
     {
       "textoIMC": "Bajo Peso",
       "valorMinimoRango": 0,
       "valorMaximoRango": 18.4,
       "mensajeIMC": "Verificar con nutricionista para aumentar peso.",
-      "color": Colors.red,
+      "color": Colors.orange,
     },
     {
       "textoIMC": "Normal Peso",
       "valorMinimoRango": 18.5,
       "valorMaximoRango": 24.9,
       "mensajeIMC": "Verificar con nutricionista para aumentar peso.",
-      "color": Colors.red,
+      "color": Colors.green,
     },
     {
       "textoIMC": "Sobre Peso",
       "valorMinimoRango": 25.0,
       "valorMaximoRango": 29.9,
       "mensajeIMC": "Verificar con nutricionista para aumentar peso.",
-      "color": Colors.red,
+      "color": Colors.orange,
     },
     {
       "textoIMC": "Obesidad Grado 1",
       "valorMinimoRango": 30.0,
       "valorMaximoRango": 34.5,
       "mensajeIMC": "Verificar con nutricionista para aumentar peso.",
-      "color": Colors.red,
+      "color": Colors.orange[700],
     },
     {
       "textoIMC": "Obesidad Grado 2",
       "valorMinimoRango": 35.0,
       "valorMaximoRango": 39.9,
       "mensajeIMC": "Verificar con nutricionista para aumentar peso.",
-      "color": Colors.red,
+      "color": Colors.orange[900],
     },
     {
       "textoIMC": "Obesidad Grado 3",
@@ -59,9 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
       "mensajeIMC": "Verificar con nutricionista para aumentar peso.",
       "color": Colors.red,
     },
-  };
-
-
+  ];
 
   void _incrementPeso() {
     setState(() {
@@ -75,7 +74,6 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  
   void _decrementPeso() {
     setState(() {
       contadorPeso--;
@@ -88,14 +86,34 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
   }
 
-  double _currentSliderValue = 166;
+  dynamic getResultado() {
+    double resultadoIMC =
+        contadorPeso / ((_estaturaValue / 100) * (_estaturaValue / 100));
+    var resultado;
+
+    categorias.forEach((categoria) {
+      double min = categoria['valorMinimoRango'];
+      double max = categoria['valorMaximoRango'];
+      if (min <= resultadoIMC && max >= resultadoIMC) {
+        resultado = {
+          "resultadoIMC": resultadoIMC,
+          "mensajeIMC": categoria['mensajeIMC'],
+          "textoIMC": categoria['textoIMC'],
+          "color": categoria['color']
+        };
+      }
+    });
+
+    return resultado;
+  }
+
+  double _estaturaValue = 166;
 
   @override
   Widget build(BuildContext context) {
@@ -114,44 +132,62 @@ class _MyHomePageState extends State<MyHomePage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Container(
-                height: 160,
-                width: 160,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFFF4081),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            new Tab(
-                                icon: new Image.asset("assets/female.png",
-                                    height: 40),
-                                text: "Femenino")
-                          ])
-                    ])),
-            Container(
-                height: 160,
-                width: 160,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF448AFF),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            new Tab(
-                                icon: new Image.asset("assets/male.png",
-                                    height: 40),
-                                text: "Masculino")
-                          ])
-                    ])),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  sexo = "Femenino";
+                  codeColorFemenino = 0xFFFF4081;
+                  codeColorMasculino = 0xFFFE3F2FD;
+                });
+              },
+              child: Container(
+                  height: 160,
+                  width: 160,
+                  decoration: BoxDecoration(
+                    color: Color(codeColorFemenino),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              new Tab(
+                                  icon: new Image.asset("assets/female.png",
+                                      height: 40),
+                                  text: "Femenino")
+                            ])
+                      ])),
+            ),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  sexo = "Masculino";
+                  codeColorFemenino = 0xFFFCE4EC;
+                  codeColorMasculino = 0xFF448AFF;
+                });
+              },
+              child: Container(
+                  height: 160,
+                  width: 160,
+                  decoration: BoxDecoration(
+                    color: Color(codeColorMasculino),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              new Tab(
+                                  icon: new Image.asset("assets/male.png",
+                                      height: 40),
+                                  text: "Masculino")
+                            ])
+                      ])),
+            ),
           ],
         ),
         Padding(
@@ -179,7 +215,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                _currentSliderValue.round().toString(),
+                                _estaturaValue.round().toString(),
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 50),
                               ),
@@ -196,15 +232,15 @@ class _MyHomePageState extends State<MyHomePage> {
                               inactiveTrackColor: Colors.white24,
                               valueIndicatorColor: Colors.purpleAccent),
                           child: Slider(
-                            value: _currentSliderValue,
+                            value: _estaturaValue,
                             min: 50,
                             max: 200,
                             divisions: 150,
-                            label: _currentSliderValue.round().toString() +
+                            label: _estaturaValue.round().toString() +
                                 "   centímetros",
                             onChanged: (double value) {
                               setState(() {
-                                _currentSliderValue = value;
+                                _estaturaValue = value;
                               });
                             },
                           ),
@@ -304,23 +340,34 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         Padding(
           padding: const EdgeInsets.all(10.0),
-          child: Container(
-              height: 80,
-              color: Colors.purple,
-              child: Column(children: [
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Text(
-                          "Calcular IMC",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 30),
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ResultadosPage(resultado: getResultado())));
+              });
+            },
+            child: Container(
+                height: 80,
+                color: Colors.purple,
+                child: Column(children: [
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            "Calcular IMC",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 30),
+                          ),
                         ),
-                      ),
-                    ])
-              ])),
+                      ])
+                ])),
+          ),
         ),
       ],
     );
