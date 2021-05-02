@@ -77,7 +77,67 @@ class _MyHomePageState extends State<MyHomePage> {
                     ])),
           ],
         ),
-        
+                Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Expanded(
+              child: Container(
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF212122),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 160,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                "Estatura",
+                                style: TextStyle(
+                                    color: Colors.white30, fontSize: 20),
+                              )
+                            ]),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                _currentSliderValue.round().toString(),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 50),
+                              ),
+                              Text("centímetros",
+                                  style: TextStyle(
+                                      color: Colors.white30, fontSize: 20))
+                            ]),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              SliderTheme(
+                                data: SliderThemeData(
+                                    activeTrackColor: Colors.white,
+                                    thumbColor: Colors.pink,
+                                    overlayColor: Colors.pink.withOpacity(0.2),
+                                    inactiveTrackColor: Colors.white24,
+                                    valueIndicatorColor: Colors.pink),
+                                child: Slider(
+                                  value: _currentSliderValue,
+                                  min: 100,
+                                  max: 200,
+                                  divisions: 100,
+                                  label:
+                                      _currentSliderValue.round().toString() +
+                                          " cm",
+                                  onChanged: (double value) {
+                                    setState(() {
+                                      _currentSliderValue = value;
+                                    });
+                                  },
+                                ),
+                              )
+                            ])
+                      ]))),
+        ),
         
       ],
     );
